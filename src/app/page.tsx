@@ -22,7 +22,7 @@ export default async function HomePage() {
   });
 
   return (
-    <Container sx={{ padding: '80px 0px' }}>
+    <Container>
       <MainSlider title={'Top Chill'} data={chills?.data ?? []} />
       <MainSlider title={'Top Workout'} data={workouts?.data ?? []} />
       <MainSlider title={'Top Party'} data={party?.data ?? []} />

@@ -8,7 +8,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <ThemeRegistry>
           <AppHeader />
-          {children}
+          <div style={{ padding: '80px 0' }}>{children}</div>
           <AppFooter />
         </ThemeRegistry>
       </body>
