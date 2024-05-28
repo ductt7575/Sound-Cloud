@@ -8,8 +8,6 @@ import 'react-h5-audio-player/lib/styles.css';
 const AppFooter = () => {
   const hasMounted = useHasMounted();
 
-  console.log('check env', process.env.NEXT_PUBLIC_BACKEND_URL);
-
   if (!hasMounted) return <></>; //fragment
 
   return (
