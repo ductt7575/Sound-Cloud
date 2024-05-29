@@ -10,12 +10,7 @@ const DetailTrackPage = (props: any) => {
 
   return (
     <Container>
-      <div>
-        Track Page details{' '}
-        <div>
-          <WaveTrack />
-        </div>
-      </div>
+      <WaveTrack />
     </Container>
   );
 };
