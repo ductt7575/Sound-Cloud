@@ -217,7 +217,7 @@ const WaveTrack = () => {
                     <img
                       onPointerMove={(e) => {
                         const hover = hoverRef.current!;
-                        hover.style.width = calLeft(item.moment);
+                        hover.style.width = calLeft(item.moment + 2);
                       }}
                       key={item.id}
                       style={{
