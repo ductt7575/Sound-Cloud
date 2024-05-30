@@ -20,6 +20,7 @@ import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -63,13 +64,16 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function AppHeader() {
+  const { data: session } = useSession();
+  console.log('check session:', session);
+  console.log('check hooks:', useSession());
+
+  const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
-  const router = useRouter();
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -202,10 +206,18 @@ export default function AppHeader() {
                 },
               }}
             >
-              <Link href="/playlists">Playlists</Link>
-              <Link href="/liked">Liked</Link>
-              <Link href="/playlists">Upload</Link>
-              <Avatar onClick={handleProfileMenuOpen}></Avatar>
+              {session ? (
+                <>
+                  <Link href="/playlists">Playlists</Link>
+                  <Link href="/liked">Liked</Link>
+                  <Link href="/playlists">Upload</Link>
+                  <Avatar onClick={handleProfileMenuOpen}></Avatar>
+                </>
+              ) : (
+                <>
+                  <Link href="/api/auth/signin">Login</Link>
+                </>
+              )}
             </Box>
             <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
               <IconButton
